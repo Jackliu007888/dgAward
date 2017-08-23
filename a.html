@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div class="a">.a</div>
+<div id="b">#b</div>
+<p class="c">p.c</p>
+<p id="c">p#c</p>
+<p class="c">p.c</p>
+<p id="d">p#d</p>
+    <script type="text/javascript">
+     genRanNum = function (lowLimit,upLimit,count) {
+        // noinspection JSAnnotator
+        var ranNum,ranArr = [];
+        if(count){
+            ranNum  = Math.round((upLimit - lowLimit - count -1) * Math.random());
+            for(var i=0,len=count; i<len; i++){
+                ranArr.push(ranNum+i)
+            }
+        }else{
+            ranNum =  Math.round((upLimit - lowLimit) * Math.random());
+            ranArr.push(ranNum)
+        }
+        return ranArr;
+    }
+  getElement =   function(param) {
+    
+        if (param.charAt(0) === "#") {
+            if (document.getElementById(param.slice(1))) {
+                return document.getElementById(param.slice(1))
+            }
+        }
+        if (param.indexOf(".") === 0) {
+            if (document.getElementsByClassName(param.slice(1))) {
+                return document.getElementsByClassName(param.slice(1))[0];
+            }
+
+        }
+
+        if (document.getElementsByTagName(param)[0]) {
+            return document.getElementsByTagName(param)[0]; 
+        }
+        return false;
+    }
+    alert1 = function (){
+        console.log("a");
+    }
+    onClick1 = function (element,func) {
+        if(getElement(element)){      
+           getElement(element).addEventListener("click",function () {
+               func();
+           })
+        }
+    }
+    onClick1("p",alert1);
+    </script>
+</body>
+</html>
