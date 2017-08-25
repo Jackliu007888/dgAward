@@ -403,7 +403,7 @@ var tctip =  window.tctip || {
 												}
 								});
 							this.generateLeftBtn();
-							this.generateMyRewardsMain();
+							this();
 						},
 	generateLeftBtn:	function(){
 							this.myRewardsBtn = tctipUtil.createElement({className: "btn-myRewards", href: "javascript:;"}, 'a', this.myRewards);

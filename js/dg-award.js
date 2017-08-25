@@ -10,27 +10,79 @@ var dgAward = window.dgAward  || {
     {configName:'wechat',content:"wxp://f2f0FQyMGuEt3K-YvCtxx0Vu8A-XS3X92uE7",name:"微信",desc:"微信打赏",className:"wechat",logo:""}
         ]
     },
+    wrapper: null,
+    myRewards:null,
+    awardTitle:null,
+    awardLogo:null,
+    awardShow:null,
+    awardHide:null,
     qrUrl: function(){
       var config = dgAward.myConfig.listConfig;
         for(var i=0,len=config.length; i<len; i++){
-          confiig = config[i]
-          baseUrl = myConfig.baseUrl;
+          conf = config[i]
+          baseUrl = dgAward.myConfig.baseUrl;
           params = {
-              name : config.name,
+              text : conf.content,
               w:150
             }
             dgAwardUtil.generateUrl(params,baseUrl)
+            // console.log(dgAwardUtil.generateUrl(params,baseUrl))
 
         }
+    },
+    generateMyRewards: function () {
+        this.myRewards = dgAwardUtil.createElement({
+            className: "award-show"
+        },"div", this.wrapper)
+
+    },
+
+    generateWrapper: function () {
+        this.wrapper = dgAwardUtil.createElement({
+            className: "award-wrapper",
+            id:         "awardWrapper"
+        });
+        this.generateAwardShow();
+        this.generateAwardHide();
+        // this();
+
+    },
+    generateAwardHide: function () {
+        this.awardHide = dgAwardUtil.createElement({
+            className: "award-hide",
+            id: "awardHide"
+        },"div",this.wrapper)
+    },
+    generateAwardShow:function(){
+        this.awardShow = dgAwardUtil.createElement({
+            className: "award-show"
+        },"div", this.wrapper);
+        this.awardTitle = dgAwardUtil.createElement({
+            className:"award-title",
+            innerText:'"如果这篇文章帮助到你，你可能想给我买杯咖啡 :)"'
+        },"h3",this.awardShow);
+        this.awardTitle = dgAwardUtil.createElement({
+            className:"award-logo",
+            id:"awardLogo"
+        },"div",this.awardShow);
+        this.generateAwardTitle();
+        this.generateAwardLogo();
+    },
+    generateAwardTitle : function(){
+
+    },
+    generateAwardLogo : function(){
+
     },
     init:function () {
         if(!document.body){
             setTimeout(dgAward.init,0)
         }else{
-            dgAward.generateMyConfig();
-            dgAward.loadCss();
-            dgAward.generateMyRewards();
-            dgAward.stat();
+            // dgAward.generateMyConfig();
+            // dgAward.loadCss();
+            dgAward.generateWrapper();
+            // dgAward.stat();
+            dgAward.qrUrl();
         }
     }
 
@@ -41,7 +93,7 @@ var dgAwardUtil = {
     generateUrl:function (params,baseUrl) {
         var paramsAll = '';
         for (var k in params){
-            paramsAll += k + "=" + params[k];
+            paramsAll += k + "=" + params[k] + '&';
         }
         return (baseUrl+'?'+paramsAll).slice(0,-1)
     },
@@ -101,3 +153,4 @@ var dgAwardUtil = {
 
 
 };
+dgAward.init();
