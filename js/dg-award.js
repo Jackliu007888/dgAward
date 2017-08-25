@@ -5,9 +5,22 @@ var dgAward = window.dgAward  || {
         logoImageId: "",
         cssUrl:"",
         baseUrl:"http://qr.liantu.com/api.php",
-        listConfig:{
-            'alipay':{content:"HTTPS://QR.ALIPAY.COM/FKX04775JJLPLHW03GV321",name:"支付宝",desc:"支付宝打赏",className:"alipay",logo:""},
-            'wechat':{content:"wxp://f2f0FQyMGuEt3K-YvCtxx0Vu8A-XS3X92uE7",name:"微信",desc:"微信打赏",className:"wechat",logo:""}
+        listConfig:[
+    {configName:'alipay',content:"HTTPS://QR.ALIPAY.COM/FKX04775JJLPLHW03GV321",name:"支付宝",desc:"支付宝打赏",className:"alipay",logo:""},
+    {configName:'wechat',content:"wxp://f2f0FQyMGuEt3K-YvCtxx0Vu8A-XS3X92uE7",name:"微信",desc:"微信打赏",className:"wechat",logo:""}
+        ]
+    },
+    qrUrl: function(){
+      var config = dgAward.myConfig.listConfig;
+        for(var i=0,len=config.length; i<len; i++){
+          confiig = config[i]
+          baseUrl = myConfig.baseUrl;
+          params = {
+              name : config.name,
+              w:150
+            }
+            dgAwardUtil.generateUrl(params,baseUrl)
+
         }
     },
     init:function () {
