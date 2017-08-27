@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <title>Title</title>
 </head>
 <body>
@@ -12,21 +12,28 @@
 
 </div>
 <script type="text/javascript">
-//window.dgAward ={
-//    myConfig:{
-//        imagePrefix:"",
-//        cssPrefix:"",
-//        baseUrl:"",
-//        logoImageId:"",
-//        cssUrl:"",
-//        listConfig:{
-//            'alipay':{content:"HTTPS://QR.ALIPAY.COM/FKX04775JJLPLHW03GV321",name:"支付宝",desc:"支付宝打赏",className:"alipay",logo:""},
-//            'wechat':{content:"wxp://f2f0FQyMGuEt3K-YvCtxx0Vu8A-XS3X92uE7",name:"微信",desc:"微信打赏",className:"wechat",logo:""}
-//        }
-//    }
-//}
+    window.myConfig = {
+        baseUrl: "http://qr.liantu.com/api.php",
+        showMes:'"如果这篇文章帮助到你，你可能想给我买杯咖啡 :)"',
+        hideMes:'"您的赞赏，是我创作的最大鼓励。"',
+        listConfig: [
+             {
+                content: "HTTPS://QR.ALIPAY.COM/FKX04775JJLPLHW03GV321",
+                name: "支付宝",
+                desc: "支付宝打赏",
+                className: "alipay",
+                logo: ""
+            },
+             {
+                content: "wxp://f2f0FQyMGuEt3K-YvCtxx0Vu8A-XS3X92uE7",
+                name: "微信",
+                desc: "微信打赏",
+                className: "wechat",
+                logo: ""
+            }]
+    }
 </script>
-<script type="text/javascript" src="js/dg-award.js"></script>
+<script type="text/javascript" src="js/dgAward.js"></script>
 
 </body>
 </html>

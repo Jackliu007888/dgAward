@@ -1,11 +1,13 @@
 var dgAward = window.dgAward  || {
     myConfig: {
-        imagePrefix : "",
-        cssPrefix : "",
-        logoImageId: "",
-        cssUrl:"",
-        baseUrl:"http://qr.liantu.com/api.php",
-        listConfig:[
+        // imagePrefix : "",
+        // cssPrefix : "",
+        // logoImageId: "",
+        // cssUrl:"",
+        showMes:window.myConfig.showMes|| '"如果这篇文章帮助到你，你可能想给我买杯咖啡 :)"',
+        hideMes:window.myConfig.hideMes|| '"您的赞赏，是我创作的最大鼓励。"',
+        baseUrl:window.myConfig.baseUrl||"http://qr.liantu.com/api.php",
+        listConfig:window.myConfig.listConfig||[
     {configName:'alipay',content:"HTTPS://QR.ALIPAY.COM/FKX04775JJLPLHW03GV321",name:"支付宝",desc:"支付宝打赏",className:"alipay",logo:""},
     {configName:'wechat',content:"wxp://f2f0FQyMGuEt3K-YvCtxx0Vu8A-XS3X92uE7",name:"微信",desc:"微信打赏",className:"wechat",logo:""}
         ]
@@ -86,7 +88,7 @@ var dgAward = window.dgAward  || {
         })()
         var awardSays = dgAwardUtil.createElement({
             className: "award-says",
-            innerText:'"您的赞赏，是我创作的最大鼓励。"'
+            innerText:dgAward.myConfig.hideMes
         },"",awardHide)
         var qrcodeWrapper = (function () {
             var qrcodeWrapper = dgAwardUtil.createElement({
@@ -123,7 +125,7 @@ var dgAward = window.dgAward  || {
         },"div", this.wrapper);
         dgAwardUtil.createElement({
             className:"award-title",
-            innerText:'"如果这篇文章帮助到你，你可能想给我买杯咖啡 :)"'
+            innerText:dgAward.myConfig.showMes
         },"h3",this.awardShow);
         dgAwardUtil.createElement({
             className:"award-logo",

@@ -66,8 +66,8 @@
     display: none;
     position: absolute;
     top: -70px;
-    left: 50px;
-    width: 83%;
+    width:90%;
+    left: 5%;
     height: 450px;
     margin: 0 auto;
     background-color: #ffffff;
@@ -163,8 +163,6 @@
     }
 }
 .award-hide .close-switch{
-    width:30px;
-    height: 30px;
     position: absolute;
     /*right: 30px;*/
     right: 30px;
@@ -256,3 +254,24 @@
 /*background: url("{{ .Site.BaseURL }}images/tx/c.jpg");*/
 /*background-size: contain;*/
 /*}*/
+
+@media screen and (max-width: 480px){
+    .containner {
+        width: 90%!important;
+    }
+
+    .award-show .award-title {
+        padding-top: 20px;
+    }
+
+}
+@media screen and (max-width: 720px) and (min-width: 481px) {
+    .containner {
+        width: 80%!important;
+    }
+
+    .award-show .award-title {
+        padding-top: 30px;
+    }
+
+}
