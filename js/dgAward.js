@@ -1,9 +1,11 @@
-var dgAward = window.dgAward  || {
+var dgAward = {
     myConfig: {
         // imagePrefix : "",
         // cssPrefix : "",
-        // logoImageId: "",
         // cssUrl:"",
+        appendName:window.myConfig.appendName || ".containner",
+        logoBaseUrl:"http://ovc3ypwtu.bkt.clouddn.com",
+        logoImage:window.myConfig.logoImage || "http://ovc3ypwtu.bkt.clouddn.com/android-chrome-96x96.png",
         showMes:window.myConfig.showMes|| '"如果这篇文章帮助到你，你可能想给我买杯咖啡 :)"',
         hideMes:window.myConfig.hideMes|| '"您的赞赏，是我创作的最大鼓励。"',
         baseUrl:window.myConfig.baseUrl||"http://qr.liantu.com/api.php",
@@ -43,7 +45,7 @@ var dgAward = window.dgAward  || {
     },
     generateCss: function () {
         dgAwardUtil.createElement({
-            href:"./css/style.css",
+            href:dgAward.myConfig.logoBaseUrl+"/style.css",
             type: "text/css",
             rel: "stylesheet"
         },"link",dgAwardUtil.getElement("head"))
@@ -58,7 +60,7 @@ var dgAward = window.dgAward  || {
         this.wrapper = dgAwardUtil.createElement({
             className: "award-wrapper",
             id:         "awardWrapper"
-        },"",dgAwardUtil.getElement(".containner"));
+        },"",dgAwardUtil.getElement(dgAward.myConfig.appendName));
         this.generateAwardShow();
         this.generateAwardHide();
         // this();
@@ -76,14 +78,17 @@ var dgAward = window.dgAward  || {
             },"",awardHide)
             var svgIcon = dgAwardUtil.createElement({
                 className:"svg-icon svg-icon-del",
+                style:"background-image:url('"+dgAward.myConfig.logoBaseUrl+"/icon-del.svg')"
             },"i",closeSwitch)
         })();
         var authorLogo = (function () {
             var authorLogo = dgAwardUtil.createElement({
                 className: "author-logo"
-            },"",awardHide)
+            },"",awardHide);
+            // console.log(dgAward.myConfig.logoImage)
             dgAwardUtil.createElement({
-                className: "author-logo-img"
+                className: "author-logo-img",
+                style:"background: url('"+dgAward.myConfig.logoImage+"');background-size:cover;"
             },"",authorLogo)
         })()
         var awardSays = dgAwardUtil.createElement({
@@ -151,7 +156,7 @@ var dgAward = window.dgAward  || {
         for (var i = 1;i<=3;i++){
             this.iconLi = dgAwardUtil.createElement({
                 className:"icon-li "+"icon-"+i,
-                style:"background:url('./img/tx/logo-"+imgNum[i-1]+".jpg');background-size:contain;",
+                style:"background:url('"+dgAward.myConfig.logoBaseUrl+"/logo-"+imgNum[i-1]+".jpg');background-size:contain;",
                 id: "icon-"+i
             },"li",this.ul)
         }
