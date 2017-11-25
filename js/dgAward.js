@@ -1,16 +1,33 @@
+/*
+ * @Author: Jackliu
+ * @Date: 2017-11-25 22:19:05
+ * @Last Modified by: Jackliu
+ * @Last Modified time: 2017-11-25 23:15:50
+ */
+
 var dgAward = {
+    setmyConfig: function (config) {
+        this.myConfig.appendName = config.appendName || this.myConfig.appendName
+        this.myConfig.logoBaseUrl = config.logoBaseUrl || this.myConfig.logoBaseUrl
+        this.myConfig.logoImage = config.logoImage || this.myConfig.logoImage
+        this.myConfig.showMes = config.showMes || this.myConfig.showMes
+        this.myConfig.awardMes = config.awardMes || this.myConfig.awardMes
+        this.myConfig.hideMes = config.hideMes || this.myConfig.hideMes
+        this.myConfig.baseUrl = config.baseUrl || this.myConfig.baseUrl
+        this.myConfig.listConfig = config.listConfig || this.myConfig.listConfig
+    },
     myConfig: {
         // imagePrefix : "",
         // cssPrefix : "",
         // cssUrl:"",
-        appendName: window.myConfig.appendName || ".containner",
-        logoBaseUrl: "http://ovc3ypwtu.bkt.clouddn.com",
-        logoImage: window.myConfig.logoImage || "http://ovc3ypwtu.bkt.clouddn.com/android-chrome-96x96.png",
-        showMes: window.myConfig.showMes || '"如果这篇文章帮助到你，你可能想给我买杯咖啡 :)"',
-        awardMes: window.myConfig.awardMes || '（扫描或长按二维码识别打赏）',
-        hideMes: window.myConfig.hideMes || '"您的赞赏，是我创作的最大鼓励。"',
-        baseUrl: window.myConfig.baseUrl || "http://qr.liantu.com/api.php",
-        listConfig: window.myConfig.listConfig || [{
+        appendName: ".containner",
+        logoBaseUrl: "http://ozz9y0r3b.bkt.clouddn.com",
+        logoImage: "/android-chrome-96x96.png",
+        showMes: '"如果这篇文章帮助到你，你可能想给我买杯咖啡 :)"',
+        awardMes: '（扫描或长按二维码识别打赏）',
+        hideMes: '"您的赞赏，是我创作的最大鼓励。"',
+        baseUrl: "http://qr.liantu.com/api.php",
+        listConfig: [{
                 configName: 'alipay',
                 content: "HTTPS://QR.ALIPAY.COM/FKX04775JJLPLHW03GV321",
                 name: "支付宝",
@@ -64,7 +81,6 @@ var dgAward = {
         this.generateAwardShow();
         this.generateAwardHide();
         // this();
-
     },
     generateAwardHide: function () {
         var awardHide = dgAwardUtil.createElement({
@@ -88,7 +104,7 @@ var dgAward = {
             // console.log(dgAward.myConfig.logoImage)
             dgAwardUtil.createElement({
                 className: "author-logo-img",
-                style: "background: url('" + dgAward.myConfig.logoImage + "');background-size:cover;"
+                style: "background: url('" + dgAward.myConfig.logoBaseUrl + dgAward.myConfig.logoImage + "');background-size:cover;"
             }, "", authorLogo)
         })()
         var awardSays = dgAwardUtil.createElement({
@@ -96,7 +112,7 @@ var dgAward = {
             innerText: dgAward.myConfig.hideMes
         }, "", awardHide)
         dgAwardUtil.createElement({
-            className: "award-says",
+            className: "award-says small",
             innerText: dgAward.myConfig.awardMes
         }, "", awardHide)
         var qrcodeWrapper = (function () {
@@ -108,15 +124,13 @@ var dgAward = {
                     var qrcode = dgAwardUtil.createElement({
                         className: "qrcode qrcode-" + dgAward.myConfig.listConfig[i].className
                     }, "", qrcodeWrapper);
-                    dgAwardUtil.genQrcode(qrcode,dgAward.myConfig.listConfig[i].content)
+                    dgAwardUtil.genQrcode(qrcode, dgAward.myConfig.listConfig[i].content)
                     dgAwardUtil.createElement({
                         innerText: dgAward.myConfig.listConfig[i].name
                     }, "h3", qrcode)
                 }
             })();
         })();
-
-
     },
     generateAwardShow: function () {
         var num = dgAwardUtil.genRanNum(3, 17)
@@ -157,16 +171,17 @@ var dgAward = {
             }, "li", this.ul)
         }
     },
-    init: function () {
+    init: function (config) {
         if (!document.body) {
             setTimeout(dgAward.init, 0)
-        } else {
-            // dgAward.generateCss();
-            dgAward.generateWrapper();
-            dgAward.eventListen()
         }
+        if (config) {
+            dgAward.setmyConfig(config)
+        }
+        dgAward.generateWrapper();
+        dgAward.eventListen()
+        dgAward.generateCss();           
     }
-
 };
 var dgAwardUtil = {
     generateUrl: function (params, baseUrl) {
@@ -226,9 +241,7 @@ var dgAwardUtil = {
             if (document.getElementsByClassName(param.slice(1))) {
                 return document.getElementsByClassName(param.slice(1))[0];
             }
-
         }
-
         if (document.getElementsByTagName(param)[0]) {
             return document.getElementsByTagName(param)[0];
         }
@@ -241,7 +254,4 @@ var dgAwardUtil = {
             })
         }
     }
-
-
 };
-dgAward.init();

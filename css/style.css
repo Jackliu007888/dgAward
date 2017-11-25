@@ -195,7 +195,7 @@
 .author-logo {
     width: 96px;
     height: 96px;
-    margin: 54px auto 30px;
+    margin: 30px auto 30px;
     border-radius: 50%;
     border: 1px solid #388AC3;
 }
@@ -235,6 +235,12 @@
     font-weight: 500;
     font-size: 16px;
     color: #333333;
+    line-height: 20px;
+}
+
+.award-says.small {
+    font-size: 14px;
+    color: rgb(9, 64, 100);
 }
 
 .qrcode-wrapper {

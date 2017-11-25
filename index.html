@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <title>Title</title>
-    <link href="./css/style.css" type="text/css" rel="stylesheet">
+    <!-- <link href="./css/style.css" type="text/css" rel="stylesheet"> -->
 </head>
 <body>
 
@@ -12,9 +12,15 @@
 <div class="containner" style="width: 60%;margin: 0 auto;margin-top: 200px;"></div>
 <div id="content" style="width: 60%;margin: 0 auto;margin-top: 200px;"></div>
 <div class="content" style="width: 60%;margin: 0 auto;margin-top: 200px;"></div>
+
+<script src="http://or30hhqjk.bkt.clouddn.com/qrcode.js"></script>
+<script type="text/javascript" src="http://ozz9y0r3b.bkt.clouddn.com/dgAward.js"></script>
+<script type="text/javascript" src="js/dgAward.js"></script>
 <script type="text/javascript">
-    window.myConfig = {
-        appendName:"#content",
+    window.onload = function(){
+        
+        var config = {
+        appendName:".content",
         logoImage:"",
         showMes:'"如果这篇文章帮助到你，你可能想给我买杯咖啡 :)"',
         hideMes:'"您的赞赏，是我创作的最大鼓励。"',
@@ -34,10 +40,8 @@
                 logo: ""
             }]
     }
+    dgAward.init();
+    }
 </script>
-<script src="http://or30hhqjk.bkt.clouddn.com/qrcode.js"></script>
-<!-- <script type="text/javascript" src="http://ovc3ypwtu.bkt.clouddn.com/dgAward.js"></script> -->
-<script type="text/javascript" src="js/dgAward.js"></script>
-
 </body>
 </html>
